@@ -5,20 +5,26 @@ def start_exercice():
 
 
 def catch_division_by_zero():
-    return 5 / 0
+    try:
+        return 5 / 0
+    except ZeroDivisionError as e :
+        print ("Erreur" , e)
 
 def catch_int_conversion_error():
-    return int("a")
+    try:
+        return int("a")
+    except ValueError as e:
+        print ("Erreur", e)
 
 
 
 
-class MyAwesomeException:
+class MyAwesomeException(Exception):
     pass
 
 
 def raise_my_own_exception():
-    pass
+    raise MyAwesomeException
 
 
 def catch_your_own_exception():
@@ -34,7 +40,8 @@ def catch_your_own_exception():
 def main():
     try:
         start_exercice()
-    except Exception:
+    except Exception as e:
+        print(e)
         print("Error: Exception catched")
 
 

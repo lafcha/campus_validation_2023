@@ -1,27 +1,27 @@
 def create_task_list():
-    return ()
+    return MyList()
 
 
 def add_to_list(list_task, task):
-    return list_task.append(task)
+    list_task.add(task)
 
 
 def size_of_list(list_task):
-    return len(list_task)
+  return list_task.size()
 
 
 def list_contains(list_task, task):
-    return task in list_task
+    return list_task.has_in_list(task)
 
 
 def upper_task_in_tasklist(list_task):
-    return [task.upper() for task in list_task]
+    return list_task.to_upper()
 
 
 def main():
     list_task = create_task_list()
 
-    if not isinstance(list_task, list):
+    if not isinstance(list_task, MyList):
         print("Error: list_task is not a list")
 
     add_to_list(list_task, "task1")
@@ -47,6 +47,22 @@ def main():
     if size_of_list(task_list_upper) != 2:
         print("Error: list size is not 2")
 
+class MyList:
+
+    def __init__(self, list=[]):
+        self.list = list
+
+    def add(self, task):
+        return self.list.append(task)
+
+    def size(self):
+        return len(self.list)
+
+    def has_in_list(self, task):
+        return task in self.list
+
+    def to_upper(self):
+        return MyList([task.upper() for task in self.list])
 
 if __name__ == "__main__":
     main()
